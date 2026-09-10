@@ -1,0 +1,53 @@
+'use client';
+
+import { Icon } from '@iconify/react';
+import { useSearchParams, usePathname, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useDebouncedSearch } from '@/hooks/useDebouncedSearch';
+
+const SearchInput = () => {
+  const searchParams = useSearchParams();
+  const param = searchParams.get('q') ?? '';
+  const [searchValue, setSearchValue] = useState(param);
+
+  const pathname = usePathname();
+  const { replace } = useRouter();
+  const debouncedValue = useDebouncedSearch(searchValue);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+
+    if (debouncedValue) {
+      params.set('q', debouncedValue);
+    }
+
+    const query = params.toString();
+
+    replace(query ? `${pathname}?${query}` : pathname);
+  }, [debouncedValue, pathname, replace]);
+
+  useEffect(() => {
+    if (!param) {
+      setSearchValue('');
+    }
+  }, [param]);
+
+  return (
+    <div className="relative mx-auto mb-10 w-full max-w-160">
+      <input
+        type="text"
+        placeholder="Search shows..."
+        className="w-full rounded-xl border-none bg-white px-4 py-3.5 pr-12 text-base shadow-[0_2px_8px_rgba(0,0,0,0.05)] outline-none transition-shadow duration-200 focus:shadow-[0_0_0_3px_rgba(0,0,0,0.08)]"
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
+      />
+
+      <Icon
+        icon="ph:magnifying-glass"
+        className="absolute right-4 top-1/2 z-10 h-6 w-6 -translate-y-1/2 text-zinc-900"
+      />
+    </div>
+  );
+};
+
+export default SearchInput;

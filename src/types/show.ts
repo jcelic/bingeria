@@ -10,3 +10,8 @@ export type Show = {
     average: number | null;
   };
 };
+
+export type SearchResult = {
+  score: number;
+  show: Show;
+};

@@ -1,14 +1,31 @@
 import Card from '@/components/Card';
-import { getShows } from '@/lib/api/shows';
+import SearchInput from '@/components/SearchInput';
+import { getShows, searchShows } from '@/lib/api/shows';
+import { Show } from '@/types/show';
 
-export default async function Home() {
-  const data = await getShows();
-  const first24 = data.slice(0, 24);
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}) {
+  let searchResults: Show[] = [];
+  let shows: Show[] = [];
+
+  const { q } = await searchParams;
+  if (q) {
+    searchResults = await searchShows(q);
+  } else {
+    const data = await getShows();
+    shows = data.slice(0, 24);
+  }
+
+  const showsToDisplay = q ? searchResults : shows;
 
   return (
     <main className="mx-auto w-full max-w-275 px-4 pt-30 pb-10">
+      <SearchInput />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {first24.map((show) => (
+        {showsToDisplay.map((show) => (
           <Card
             key={show.id}
             id={show.id}
