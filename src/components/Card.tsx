@@ -12,18 +12,20 @@ type CardProps = {
 
 const Card = ({ id, image, name, genres, rating }: CardProps) => {
   return (
-    <article className="overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-md max-w-sm mx-auto">
-      <Link href={`/show/${id}`}>
+    <article className="mx-auto h-full w-full max-w-70 overflow-hidden rounded-2xl bg-white text-center shadow-sm transition-shadow hover:shadow-md">
+      <Link href={`/show/${id}`} className="flex h-full flex-col">
         {image ? (
           <Image
             src={image}
-            width={300}
-            height={450}
+            width={210}
+            height={295}
             alt={`${name} image`}
-            className="h-75 w-full"
+            className="h-auto w-full"
           />
         ) : (
-          <Icon icon="carbon:no-image" className="text-5xl" />
+          <div className="flex aspect-210/295 w-full items-center justify-center bg-zinc-100">
+            <Icon icon="carbon:no-image" className="text-5xl" />
+          </div>
         )}
 
         <div className="space-y-2 p-3">
@@ -42,8 +44,8 @@ const Card = ({ id, image, name, genres, rating }: CardProps) => {
             </div>
 
             {rating !== null && (
-              <span>
-                <Icon icon="ph:star-fill" className="text-yellow-400 text-lg" />{' '}
+              <span className="inline-flex shrink-0 items-center gap-1">
+                <Icon icon="ph:star-fill" className="text-lg text-yellow-400" />
                 {rating}
               </span>
             )}
