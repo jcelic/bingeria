@@ -9,6 +9,8 @@ export type Show = {
   rating: {
     average: number | null;
   };
+  premiered: string | null;
+  summary: string | null;
 };
 
 export type SearchResult = {

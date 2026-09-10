@@ -3,6 +3,7 @@
 // force-cache bi mogao predugo zadržati zastarjele podatke.
 
 import { SearchResult, Show } from '@/types/show';
+import { notFound } from 'next/navigation';
 
 export const getShows = async (): Promise<Show[]> => {
   const response = await fetch('https://api.tvmaze.com/shows?page=0', {
@@ -27,4 +28,29 @@ export const searchShows = async (q: string): Promise<Show[]> => {
   const shows: Show[] = data.map((result) => result.show);
 
   return shows;
+};
+
+export const getShow = async (id: number): Promise<Show> => {
+  const response = await fetch(`https://api.tvmaze.com/shows/${id}`);
+
+  if (response.status === 404) notFound();
+
+  if (!response.ok) throw new Error('Failed to fetch show');
+
+  const data: Show = await response.json();
+
+  return data;
+};
+
+export const getShowEpisodes = async (id: number): Promise<unknown[]> => {
+  const response = await fetch(`https://api.tvmaze.com/shows/${id}/episodes
+`);
+
+  if (response.status === 404) notFound();
+
+  if (!response.ok) throw new Error('Failed to fetch episodes');
+
+  const data = await response.json();
+
+  return data;
 };
