@@ -3,17 +3,22 @@ import { Icon } from '@iconify/react';
 import { getShow, getShowEpisodes } from '@/lib/api/shows';
 import { removeHtml } from '@/lib/utils/removeHtml';
 import Link from 'next/link';
+import { getWatchlist } from '@/lib/actions/watchlist';
+import AddShowBtn from '@/components/AddShowBtn';
 
 const ShowDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
 
-  const [show, episodes] = await Promise.all([
+  const [show, episodes, watchlist] = await Promise.all([
     getShow(+id),
     getShowEpisodes(+id),
+    getWatchlist(),
   ]);
 
   const cleanSummary = show.summary ? removeHtml(show.summary) : '';
   const date = show.premiered && new Date(show.premiered).toLocaleDateString();
+
+  const isAdded = !!watchlist.find((item) => item.id === +id);
 
   return (
     <main className="mx-auto w-full max-w-5xl px-4 pt-30 pb-10">
@@ -54,13 +59,7 @@ const ShowDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
               ))}
             </div>
 
-            <button
-              type="button"
-              className="mb-6 inline-flex items-center gap-2 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-700 cursor-pointer"
-            >
-              <Icon icon="ph:plus" className="text-lg" />
-              Add to watchlist
-            </button>
+            <AddShowBtn show={show} isAdded={isAdded} />
 
             <div className="mb-6 space-y-3 text-sm">
               <p className="flex items-center gap-2">
