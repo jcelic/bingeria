@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { getWatchlist } from '@/lib/actions/watchlist';
 import AddShowBtn from '@/components/AddShowBtn';
 import ReviewCard from '@/components/ReviewCard';
+import BackBtn from '@/components/BackBtn';
 
 const ShowDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
@@ -25,13 +26,7 @@ const ShowDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   return (
     <main className="mx-auto w-full max-w-5xl px-4 pt-30 pb-10">
-      <Link
-        href="/"
-        className="mb-4 inline-flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-base font-medium text-zinc-700 shadow-sm transition-colors hover:bg-zinc-100"
-      >
-        <Icon icon="ph:caret-left" className="text-lg" />
-        Back
-      </Link>
+      <BackBtn />
       <article className="overflow-hidden rounded-2xl bg-white shadow-sm">
         <div className="grid gap-8 p-6 md:grid-cols-[280px_1fr] md:p-8">
           {show.image ? (
