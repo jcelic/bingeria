@@ -8,7 +8,7 @@ const Header = () => {
   const pathname = usePathname();
 
   return (
-    <header className="p-3 bg-white fixed top-0 left-0 right-0 shadow-[0_2px_8px_rgba(0,0,0,0.05)] ">
+    <header className="p-3 bg-white fixed top-0 left-0 right-0 shadow-[0_2px_8px_rgba(0,0,0,0.05)] z-50">
       <div className="mx-auto w-full max-w-275 flex justify-between items-center">
         <div>
           <Link href="/" className="flex items-center gap-2">
@@ -23,7 +23,7 @@ const Header = () => {
               <li>
                 <Link
                   href="/watchlist"
-                  className={`transition-colors hover:text-sky-500 ${pathname === '/watchlist' ? 'text-sky-500' : ''}`}
+                  className={`transition-colors hover:text-black ${pathname === '/watchlist' ? 'text-black' : 'text-zinc-600'}`}
                 >
                   Watchlist
                 </Link>
@@ -31,7 +31,7 @@ const Header = () => {
               <li>
                 <Link
                   href="/about"
-                  className={`transition-colors hover:text-sky-500 ${pathname === '/about' ? 'text-sky-500' : ''}`}
+                  className={`transition-colors hover:text-black ${pathname === '/about' ? 'text-black' : 'text-zinc-600'}`}
                 >
                   About
                 </Link>
@@ -39,7 +39,7 @@ const Header = () => {
               <li>
                 <Link
                   href="/rules"
-                  className={`transition-colors hover:text-sky-500 ${pathname === '/rules' ? 'text-sky-500' : ''}`}
+                  className={`transition-colors hover:text-black ${pathname === '/rules' ? 'text-black' : 'text-zinc-600'}`}
                 >
                   Rules
                 </Link>
@@ -50,7 +50,7 @@ const Header = () => {
           <button type="button">
             <Icon
               icon="ph:moon"
-              className="text-3xl transition-colors cursor-pointer hover:text-sky-500"
+              className="text-3xl transition-colors cursor-pointer hover:text-black"
             />
           </button>
         </div>
