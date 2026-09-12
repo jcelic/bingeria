@@ -1,3 +1,5 @@
+import type { ReviewFormData } from '@/lib/validations/review';
+
 export type Show = {
   id: number;
   image: {
@@ -11,6 +13,7 @@ export type Show = {
   };
   premiered: string | null;
   summary: string | null;
+  review?: ReviewFormData;
 };
 
 export type SearchResult = {

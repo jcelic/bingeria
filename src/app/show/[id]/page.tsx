@@ -5,6 +5,7 @@ import { removeHtml } from '@/lib/utils/removeHtml';
 import Link from 'next/link';
 import { getWatchlist } from '@/lib/actions/watchlist';
 import AddShowBtn from '@/components/AddShowBtn';
+import ReviewCard from '@/components/ReviewCard';
 
 const ShowDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
@@ -19,6 +20,8 @@ const ShowDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
   const date = show.premiered && new Date(show.premiered).toLocaleDateString();
 
   const isAdded = !!watchlist.find((item) => item.id === +id);
+
+  const review = watchlist.find((item) => item.id === +id)?.review;
 
   return (
     <main className="mx-auto w-full max-w-5xl px-4 pt-30 pb-10">
@@ -59,7 +62,19 @@ const ShowDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
               ))}
             </div>
 
-            <AddShowBtn show={show} isAdded={isAdded} />
+            <div className="flex gap-2">
+              <AddShowBtn show={show} isAdded={isAdded} />
+
+              {isAdded && (
+                <Link
+                  href={`/show/${id}/review`}
+                  className="mb-6 inline-flex cursor-pointer items-center gap-2 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-700"
+                >
+                  <Icon icon="ph:pencil-simple" className="text-lg" />
+                  {review ? 'Edit' : 'Write'} a review
+                </Link>
+              )}
+            </div>
 
             <div className="mb-6 space-y-3 text-sm">
               <p className="flex items-center gap-2">
@@ -82,6 +97,8 @@ const ShowDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
 
               <p className="leading-7 text-zinc-600">{cleanSummary}</p>
             </div>
+
+            {review && <ReviewCard review={review} />}
           </div>
         </div>
       </article>
