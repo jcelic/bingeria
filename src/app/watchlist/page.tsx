@@ -1,5 +1,5 @@
 import { getWatchlist } from '@/lib/actions/watchlist';
-import Card from '@/components/Card';
+import WatchlistContent from '@/components/WatchlistContent';
 import { Icon } from '@iconify/react';
 
 const WatchList = async () => {
@@ -64,19 +64,7 @@ const WatchList = async () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-[repeat(2,280px)] md:justify-center md:gap-10 lg:grid-cols-4 lg:gap-6">
-        {watchlist.map((show) => (
-          <Card
-            key={show.id}
-            id={show.id}
-            image={show.image?.medium}
-            name={show.name}
-            genres={show.genres}
-            rating={show.rating.average}
-            isWatchlist={true}
-          />
-        ))}
-      </div>
+      <WatchlistContent watchlist={watchlist} />
     </main>
   );
 };

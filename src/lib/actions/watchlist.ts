@@ -19,7 +19,8 @@ export const addShow = async (show: Show) => {
       };
     }
 
-    shows.push(show);
+    const showWithDate = { ...show, addedAt: new Date().toISOString() };
+    shows.push(showWithDate);
 
     const json = JSON.stringify(shows, null, 2);
 

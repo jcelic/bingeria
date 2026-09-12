@@ -14,6 +14,7 @@ export type Show = {
   premiered: string | null;
   summary: string | null;
   review?: ReviewFormData;
+  addedAt: string;
 };
 
 export type SearchResult = {
