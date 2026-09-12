@@ -37,14 +37,14 @@ const SearchInput = () => {
       <input
         type="text"
         placeholder="Search shows..."
-        className="w-full rounded-xl border-none bg-white px-4 py-3.5 pr-12 text-base shadow-[0_2px_8px_rgba(0,0,0,0.05)] outline-none transition-shadow duration-200 focus:shadow-[0_0_0_3px_rgba(0,0,0,0.08)]"
+        className="w-full rounded-xl border-none bg-white px-4 py-3.5 pr-12 text-base text-zinc-900 shadow-[0_2px_8px_rgba(0,0,0,0.05)] outline-none transition-shadow duration-200 placeholder:text-zinc-400 focus:shadow-[0_0_0_3px_rgba(0,0,0,0.08)] dark:bg-zinc-800 dark:text-zinc-50 dark:placeholder:text-zinc-400 dark:shadow-[0_2px_8px_rgba(0,0,0,0.35)] dark:focus:shadow-[0_0_0_3px_rgba(255,255,255,0.14)]"
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
       />
 
       <Icon
         icon="ph:magnifying-glass"
-        className="absolute right-4 top-1/2 z-10 h-6 w-6 -translate-y-1/2 text-zinc-900"
+        className="absolute right-4 top-1/2 z-10 h-6 w-6 -translate-y-1/2 text-zinc-900 dark:text-zinc-300"
       />
     </div>
   );

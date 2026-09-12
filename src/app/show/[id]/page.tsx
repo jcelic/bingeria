@@ -27,7 +27,7 @@ const ShowDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
   return (
     <main className="mx-auto w-full max-w-5xl px-4 pt-30 pb-10">
       <BackBtn />
-      <article className="overflow-hidden rounded-2xl bg-white shadow-sm">
+      <article className="overflow-hidden rounded-2xl bg-white shadow-sm dark:bg-zinc-800 dark:shadow-[0_2px_8px_rgba(0,0,0,0.35)]">
         <div className="grid gap-8 p-6 md:grid-cols-[280px_1fr] md:p-8">
           {show.image ? (
             <Image
@@ -38,8 +38,11 @@ const ShowDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
               className="mx-auto h-auto w-full max-w-90 rounded-xl md:max-w-none"
             />
           ) : (
-            <div className="mx-auto flex aspect-5/7 w-full max-w-90 items-center justify-center rounded-xl bg-zinc-100 md:max-w-none">
-              <Icon icon="carbon:no-image" className="text-6xl" />
+            <div className="mx-auto flex aspect-5/7 w-full max-w-90 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-700 md:max-w-none">
+              <Icon
+                icon="carbon:no-image"
+                className="text-6xl text-zinc-700 dark:text-zinc-300"
+              />
             </div>
           )}
 
@@ -49,7 +52,7 @@ const ShowDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
             <div className="mb-6 flex flex-wrap gap-2">
               {show.genres.map((genre) => (
                 <span
-                  className="rounded-full bg-zinc-100 px-3 py-1 text-sm"
+                  className="rounded-full bg-zinc-100 px-3 py-1 text-sm dark:bg-zinc-700 dark:text-zinc-200"
                   key={genre}
                 >
                   {genre}
@@ -63,7 +66,7 @@ const ShowDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
               {isAdded && (
                 <Link
                   href={`/show/${id}/review`}
-                  className="mb-6 inline-flex cursor-pointer items-center gap-2 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-700"
+                  className="mb-6 inline-flex cursor-pointer items-center gap-2 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-700 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200"
                 >
                   <Icon icon="ph:pencil-simple" className="text-lg" />
                   {review ? 'Edit' : 'Write'} a review
@@ -90,7 +93,9 @@ const ShowDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
             <div>
               <h2 className="mb-2 text-xl font-bold">Summary</h2>
 
-              <p className="leading-7 text-zinc-600">{cleanSummary}</p>
+              <p className="leading-7 text-zinc-600 dark:text-zinc-300">
+                {cleanSummary}
+              </p>
             </div>
 
             {review && <ReviewCard review={review} />}

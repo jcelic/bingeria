@@ -6,6 +6,7 @@ import Card from './Card';
 
 const WatchlistContent = ({ watchlist }: { watchlist: Show[] }) => {
   const [sortBy, setSortBy] = useState<'date' | 'rating' | null>(null);
+
   const sortedWatchlist = [...watchlist];
 
   if (sortBy === 'date') {
@@ -29,15 +30,15 @@ const WatchlistContent = ({ watchlist }: { watchlist: Show[] }) => {
   return (
     <>
       <div className="mb-6 flex flex-wrap items-center gap-3">
-        <p className="text-sm text-zinc-500">Sort by</p>
+        <p className="text-sm text-zinc-500 dark:text-zinc-400">Sort by</p>
 
         <div className="flex gap-2">
           <button
             type="button"
-            className={`cursor-pointer rounded-xl px-4 py-2 text-sm font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] transition-colors ${
+            className={`cursor-pointer rounded-xl px-4 py-2 text-sm font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] transition-colors dark:shadow-[0_2px_8px_rgba(0,0,0,0.3)] ${
               sortBy === 'date'
-                ? 'bg-zinc-950 text-white hover:bg-zinc-800'
-                : 'bg-white text-zinc-700 hover:bg-zinc-100'
+                ? 'bg-zinc-950 text-white hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200'
+                : 'bg-white text-zinc-700 hover:bg-zinc-100 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700'
             }`}
             onClick={() => setSortBy('date')}
           >
@@ -46,10 +47,10 @@ const WatchlistContent = ({ watchlist }: { watchlist: Show[] }) => {
 
           <button
             type="button"
-            className={`cursor-pointer rounded-xl px-4 py-2 text-sm font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] transition-colors ${
+            className={`cursor-pointer rounded-xl px-4 py-2 text-sm font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] transition-colors dark:shadow-[0_2px_8px_rgba(0,0,0,0.3)] ${
               sortBy === 'rating'
-                ? 'bg-zinc-950 text-white hover:bg-zinc-800'
-                : 'bg-white text-zinc-700 hover:bg-zinc-100'
+                ? 'bg-zinc-950 text-white hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200'
+                : 'bg-white text-zinc-700 hover:bg-zinc-100 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700'
             }`}
             onClick={() => setSortBy('rating')}
           >

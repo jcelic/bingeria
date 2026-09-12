@@ -14,7 +14,7 @@ type CardProps = {
 
 const Card = ({ id, image, name, genres, rating, isWatchlist }: CardProps) => {
   return (
-    <article className="relative mx-auto h-full w-full max-w-70 overflow-hidden rounded-2xl bg-white text-center shadow-sm transition-shadow hover:shadow-md">
+    <article className="relative mx-auto h-full w-full max-w-70 overflow-hidden rounded-2xl bg-white text-center shadow-sm transition-shadow hover:shadow-md dark:bg-zinc-800 dark:shadow-[0_2px_8px_rgba(0,0,0,0.35)] dark:hover:shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
       <Link
         href={`/show/${id}`}
         className="absolute inset-0 z-10"
@@ -30,8 +30,11 @@ const Card = ({ id, image, name, genres, rating, isWatchlist }: CardProps) => {
           className="h-auto w-full"
         />
       ) : (
-        <div className="flex aspect-210/295 w-full items-center justify-center bg-zinc-100">
-          <Icon icon="carbon:no-image" className="text-5xl" />
+        <div className="flex aspect-210/295 w-full items-center justify-center bg-zinc-100 dark:bg-zinc-700">
+          <Icon
+            icon="carbon:no-image"
+            className="text-5xl text-zinc-700 dark:text-zinc-300"
+          />
         </div>
       )}
 
@@ -43,7 +46,7 @@ const Card = ({ id, image, name, genres, rating, isWatchlist }: CardProps) => {
             {genres.map((genre) => (
               <span
                 key={genre}
-                className="rounded-full bg-zinc-100 px-2 py-1 text-xs"
+                className="rounded-full bg-zinc-100 px-2 py-1 text-xs dark:bg-zinc-700 dark:text-zinc-200"
               >
                 {genre}
               </span>
