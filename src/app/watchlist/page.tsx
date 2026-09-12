@@ -40,7 +40,7 @@ const WatchList = async () => {
   }
 
   return (
-    <main className="mx-auto w-full max-w-275 px-4 pt-30 pb-10">
+    <main className="mx-auto w-full max-w-275 px-4 pt-24 sm:pt-30 pb-10">
       <div className="mb-8 grid grid-cols-3 divide-x divide-zinc-100 rounded-2xl bg-white shadow-[0_2px_8px_rgba(0,0,0,0.05)] dark:divide-zinc-700 dark:bg-zinc-800 dark:shadow-[0_2px_8px_rgba(0,0,0,0.35)]">
         <div className="p-4 text-center">
           <p className="text-2xl font-semibold text-zinc-950 dark:text-zinc-50">

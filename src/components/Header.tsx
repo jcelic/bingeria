@@ -14,14 +14,14 @@ const Header = () => {
       <div className="mx-auto flex w-full max-w-275 items-center justify-between">
         <div>
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-5xl">Bingeria</span>
-            <Icon icon="twemoji:popcorn" className="text-5xl" />
+            <span className="text-4xl sm:text-5xl">Bingeria</span>
+            <Icon icon="twemoji:popcorn" className="text-4xl sm:text-5xl" />
           </Link>
         </div>
 
         <div className="flex items-center gap-3">
           <nav>
-            <ul className="flex items-center gap-4 text-xl">
+            <ul className="flex items-center gap-3 text-lg sm:gap-4 sm:text-xl">
               <li>
                 <Link
                   href="/watchlist"
@@ -69,7 +69,7 @@ const Header = () => {
           >
             <Icon
               icon={theme === 'dark' ? 'ph:sun' : 'ph:moon'}
-              className="cursor-pointer text-3xl transition-colors hover:text-black dark:hover:text-zinc-50"
+              className="cursor-pointer text-2xl transition-colors hover:text-black dark:hover:text-zinc-50 sm:text-3xl"
             />
           </button>
         </div>
