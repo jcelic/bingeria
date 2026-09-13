@@ -12,20 +12,19 @@ export const reviewSchema = z
       .int('Episode must be a whole number')
       .min(0, 'Episode cannot be negative'),
 
-    comment: z.string().trim(),
+    comment: z
+      .string()
+      .trim()
+      .min(20, 'Comment must be at least 20 characters'),
 
     spoilers: z.boolean(),
   })
   .superRefine((data, ctx) => {
-    const minimumLength = data.spoilers ? 50 : 20;
-
-    if (data.comment.length < minimumLength) {
+    if (data.spoilers && data.comment.length < 50) {
       ctx.addIssue({
         code: 'custom',
         path: ['comment'],
-        message: data.spoilers
-          ? 'Reviews with spoilers must have at least 50 characters'
-          : 'Write at least 20 characters',
+        message: 'Comment must be at least 50 characters with spoilers',
       });
     }
   });
