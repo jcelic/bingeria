@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { Nunito } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
-import { Toaster } from 'sonner';
 import ThemeProvider from '@/components/ThemeProvider';
+import AppToaster from '@/components/AppToaster';
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -26,20 +26,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         <ThemeProvider>
           <Header />
           {children}
-          <Toaster
-            position="top-center"
-            toastOptions={{
-              style: {
-                width: 'max-content',
-                maxWidth: 'calc(100vw - 32px)',
-                left: '50%',
-                right: 'auto',
-                translate: '-50% 0',
-                padding: '12px 16px',
-                fontSize: '15px',
-              },
-            }}
-          />
+          <AppToaster />
         </ThemeProvider>
       </body>
     </html>
