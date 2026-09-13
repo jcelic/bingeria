@@ -10,6 +10,13 @@ const SearchInput = () => {
   const param = searchParams.get('q') ?? '';
   const [searchValue, setSearchValue] = useState(param);
 
+  const [previousParam, setPreviousParam] = useState(param);
+
+  if (param !== previousParam) {
+    setPreviousParam(param);
+    setSearchValue(param);
+  }
+
   const pathname = usePathname();
   const { replace } = useRouter();
   const debouncedValue = useDebouncedSearch(searchValue);
