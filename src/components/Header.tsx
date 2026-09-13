@@ -13,7 +13,10 @@ const Header = () => {
     <header className="fixed top-0 right-0 left-0 z-50 bg-white p-3 shadow-[0_2px_8px_rgba(0,0,0,0.05)] dark:bg-zinc-800 dark:shadow-[0_2px_8px_rgba(0,0,0,0.35)]">
       <div className="mx-auto flex w-full max-w-275 items-center justify-between">
         <div>
-          <Link href="/" className="flex items-center gap-2">
+          <Link
+            href="/"
+            className="flex items-center gap-2 transition-opacity hover:opacity-80"
+          >
             <span className="text-4xl sm:text-5xl">Bingeria</span>
             <Icon icon="twemoji:popcorn" className="text-4xl sm:text-5xl" />
           </Link>
@@ -28,7 +31,7 @@ const Header = () => {
                   className={`transition-colors hover:text-black dark:hover:text-zinc-50 ${
                     pathname === '/watchlist'
                       ? 'text-black dark:text-zinc-50'
-                      : 'text-zinc-600 dark:text-zinc-400'
+                      : 'text-zinc-600 dark:text-zinc-300'
                   }`}
                 >
                   Watchlist
@@ -41,7 +44,7 @@ const Header = () => {
                   className={`transition-colors hover:text-black dark:hover:text-zinc-50 ${
                     pathname === '/about'
                       ? 'text-black dark:text-zinc-50'
-                      : 'text-zinc-600 dark:text-zinc-400'
+                      : 'text-zinc-600 dark:text-zinc-300'
                   }`}
                 >
                   About
@@ -54,7 +57,7 @@ const Header = () => {
                   className={`transition-colors hover:text-black dark:hover:text-zinc-50 ${
                     pathname === '/rules'
                       ? 'text-black dark:text-zinc-50'
-                      : 'text-zinc-600 dark:text-zinc-400'
+                      : 'text-zinc-600 dark:text-zinc-300'
                   }`}
                 >
                   Rules
@@ -69,7 +72,7 @@ const Header = () => {
           >
             <Icon
               icon={theme === 'dark' ? 'ph:sun' : 'ph:moon'}
-              className="cursor-pointer text-2xl transition-colors hover:text-black dark:hover:text-zinc-50 sm:text-3xl"
+              className="cursor-pointer text-2xl text-zinc-600 transition-colors hover:text-black dark:text-zinc-300 dark:hover:text-zinc-50 sm:text-3xl"
             />
           </button>
         </div>
