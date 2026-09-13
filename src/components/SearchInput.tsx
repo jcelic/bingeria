@@ -26,12 +26,6 @@ const SearchInput = () => {
     replace(query ? `${pathname}?${query}` : pathname);
   }, [debouncedValue, pathname, replace]);
 
-  useEffect(() => {
-    if (!param) {
-      setSearchValue('');
-    }
-  }, [param]);
-
   return (
     <div className="relative mx-auto mb-10 w-full max-w-160">
       <input
