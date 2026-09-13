@@ -6,6 +6,8 @@ import { readFile, writeFile } from 'fs/promises';
 import { revalidatePath } from 'next/cache';
 import { reviewSchema } from '../validations/review';
 
+import { redirect, RedirectType } from 'next/navigation';
+
 const filePath = 'data/watchlist.json';
 
 export const saveReview = async (data: ReviewFormData, id: number) => {
@@ -32,7 +34,10 @@ export const saveReview = async (data: ReviewFormData, id: number) => {
       };
     }
 
-    const updatedShow = { ...reviewedShow, review: result.data };
+    const updatedShow = {
+      ...reviewedShow,
+      review: result.data,
+    };
 
     const updatedShows = shows.map((show) =>
       show.id === id ? updatedShow : show,
@@ -43,13 +48,16 @@ export const saveReview = async (data: ReviewFormData, id: number) => {
     await writeFile(filePath, json);
 
     revalidatePath('/watchlist');
-    revalidatePath(`/show/${id}`);
-
-    return { success: true, message: 'Review saved successfully' };
   } catch (error) {
     console.error(error);
-    return { success: false, message: 'Failed to save review' };
+
+    return {
+      success: false,
+      message: 'Failed to save review',
+    };
   }
+
+  redirect(`/show/${id}`, RedirectType.replace);
 };
 
 export const deleteReview = async (id: number) => {
@@ -67,11 +75,14 @@ export const deleteReview = async (id: number) => {
     await writeFile(filePath, json);
 
     revalidatePath('/watchlist');
-    revalidatePath(`/show/${id}`);
-
-    return { success: true, message: 'Review deleted successfully' };
   } catch (error) {
     console.error(error);
-    return { success: false, message: 'Failed to delete review' };
+
+    return {
+      success: false,
+      message: 'Failed to delete review',
+    };
   }
+
+  redirect(`/show/${id}`, RedirectType.replace);
 };

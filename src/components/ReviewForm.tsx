@@ -3,7 +3,6 @@
 import { saveReview, deleteReview } from '@/lib/actions/review';
 import { reviewSchema, type ReviewFormData } from '@/lib/validations/review';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -16,7 +15,6 @@ const ReviewForm = ({
   review?: ReviewFormData;
 }) => {
   const [isDeleting, setIsDeleting] = useState(false);
-  const router = useRouter();
 
   const {
     register,
@@ -28,35 +26,20 @@ const ReviewForm = ({
   });
 
   const onSubmit = async (data: ReviewFormData) => {
-    try {
-      const result = await saveReview(data, id);
+    const result = await saveReview(data, id);
 
-      if (result.success) {
-        router.replace(`/show/${id}`);
-        toast.success('Review saved');
-      } else {
-        toast.error(result.message);
-      }
-    } catch {
-      toast.error('Failed to save review. Please try again.');
+    if (!result.success) {
+      toast.error(result.message);
     }
   };
 
   const handleDelete = async () => {
     setIsDeleting(true);
 
-    try {
-      const result = await deleteReview(id);
+    const result = await deleteReview(id);
 
-      if (result.success) {
-        router.replace(`/show/${id}`);
-        toast.success('Review deleted');
-      } else {
-        toast.error(result.message);
-      }
-    } catch {
-      toast.error('Failed to delete review. Please try again.');
-    } finally {
+    if (!result.success) {
+      toast.error(result.message);
       setIsDeleting(false);
     }
   };
