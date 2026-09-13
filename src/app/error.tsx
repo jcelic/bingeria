@@ -21,7 +21,7 @@ const Error = ({ reset }: { reset: () => void }) => {
         <h1 className="mb-3 text-3xl font-bold">Something went wrong</h1>
 
         <p className="mb-6 text-zinc-600 dark:text-zinc-300">
-          We couldn't load this page. Please try again.
+          We couldn not load this page. Please try again.
         </p>
 
         <div className="flex flex-wrap justify-center gap-3">

@@ -1,6 +1,5 @@
 import { addShow, getWatchlist } from '@/lib/actions/watchlist';
 import { getShow } from '@/lib/api/shows';
-import { Icon } from '@iconify/react';
 import { redirect } from 'next/navigation';
 import type { ReactNode } from 'react';
 import Image from 'next/image';
