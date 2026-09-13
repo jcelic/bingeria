@@ -6,12 +6,16 @@ import { toast } from 'sonner';
 
 const RemoveShowBtn = ({ id }: { id: number }) => {
   const handleRemove = async () => {
-    const result = await removeShow(id);
+    try {
+      const result = await removeShow(id);
 
-    if (result.success) {
-      toast.success(result.message);
-    } else {
-      toast.error(result.message);
+      if (result.success) {
+        toast.success(result.message);
+      } else {
+        toast.error(result.message);
+      }
+    } catch {
+      toast.error('Failed to remove show');
     }
   };
 
