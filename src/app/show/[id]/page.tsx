@@ -17,8 +17,13 @@ const ShowDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
     getWatchlist(),
   ]);
 
-  const cleanSummary = show.summary ? removeHtml(show.summary) : '';
-  const date = show.premiered && new Date(show.premiered).toLocaleDateString();
+  const cleanSummary = show.summary
+    ? removeHtml(show.summary)
+    : 'No summary available.';
+
+  const date = show.premiered
+    ? new Date(show.premiered).toLocaleDateString()
+    : 'Unknown';
 
   const isAdded = !!watchlist.find((item) => item.id === +id);
 
@@ -77,7 +82,9 @@ const ShowDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
             <div className="mb-6 space-y-3 text-sm">
               <p className="flex items-center gap-2">
                 <Icon icon="ph:star-fill" className="text-lg text-yellow-400" />
-                <span className="font-semibold">{show.rating.average}</span>
+                <span className="font-semibold">
+                  {show.rating.average ?? 'N/A'}
+                </span>
               </p>
 
               <p>
