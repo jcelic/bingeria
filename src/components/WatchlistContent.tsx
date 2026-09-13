@@ -59,7 +59,7 @@ const WatchlistContent = ({ watchlist }: { watchlist: WatchlistShow[] }) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-[repeat(2,280px)] md:justify-center md:gap-10 lg:grid-cols-4 lg:gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-[repeat(2,280px)] md:justify-center md:gap-10 lg:grid-cols-4 lg:gap-6">
         {sortedWatchlist.map((show) => (
           <Card
             key={show.id}

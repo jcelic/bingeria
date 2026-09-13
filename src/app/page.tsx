@@ -24,7 +24,7 @@ export default async function Home({
   return (
     <main className="mx-auto w-full max-w-275 px-4 pt-30 pb-10">
       <SearchInput />
-      <div className="grid grid-cols-1 md:grid-cols-[repeat(2,280px)] md:justify-center lg:grid-cols-4 md:gap-10 lg:gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-[repeat(2,280px)] md:justify-center md:gap-10 lg:grid-cols-4 lg:gap-6">
         {showsToDisplay.map((show) => (
           <Card
             key={show.id}

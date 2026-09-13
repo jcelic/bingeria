@@ -17,8 +17,11 @@ const Header = () => {
             href="/"
             className="flex items-center gap-2 transition-opacity hover:opacity-80"
           >
-            <span className="text-4xl sm:text-5xl">Bingeria</span>
-            <Icon icon="twemoji:popcorn" className="text-4xl sm:text-5xl" />
+            <span className="text-3xl sm:text-4xl md:text-5xl">Bingeria</span>
+            <Icon
+              icon="twemoji:popcorn"
+              className="text-3xl sm:text-4xl md:text-5xl"
+            />
           </Link>
         </div>
 
