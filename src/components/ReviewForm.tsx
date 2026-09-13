@@ -1,7 +1,7 @@
 'use client';
 
 import { saveReview, deleteReview } from '@/lib/actions/review';
-import { reviewSchema, ReviewFormData } from '@/lib/validations/review';
+import { reviewSchema, type ReviewFormData } from '@/lib/validations/review';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';

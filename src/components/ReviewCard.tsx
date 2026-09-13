@@ -1,7 +1,7 @@
 'use client';
 
 import { useRevealSpoilers } from '@/hooks/useRevealSpoilers';
-import { ReviewFormData } from '@/lib/validations/review';
+import type { ReviewFormData } from '@/lib/validations/review';
 import { Icon } from '@iconify/react';
 
 const ReviewCard = ({ review }: { review: ReviewFormData }) => {

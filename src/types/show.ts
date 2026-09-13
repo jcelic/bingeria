@@ -13,8 +13,11 @@ export type Show = {
   };
   premiered: string | null;
   summary: string | null;
-  review?: ReviewFormData;
+};
+
+export type WatchlistShow = Show & {
   addedAt: string;
+  review?: ReviewFormData;
 };
 
 export type SearchResult = {

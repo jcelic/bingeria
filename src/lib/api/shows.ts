@@ -2,7 +2,7 @@
 // no-store nema smisla jer ne trebam svježe podatke na svaki request
 // force-cache bi mogao predugo zadržati zastarjele podatke.
 
-import { SearchResult, Show } from '@/types/show';
+import type { SearchResult, Show } from '@/types/show';
 import { notFound } from 'next/navigation';
 
 export const getShows = async (): Promise<Show[]> => {

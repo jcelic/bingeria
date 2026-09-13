@@ -1,7 +1,7 @@
 import Card from '@/components/Card';
 import SearchInput from '@/components/SearchInput';
 import { getShows, searchShows } from '@/lib/api/shows';
-import { Show } from '@/types/show';
+import type { Show } from '@/types/show';
 
 export default async function Home({
   searchParams,

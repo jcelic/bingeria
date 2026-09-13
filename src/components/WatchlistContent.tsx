@@ -1,18 +1,18 @@
 'use client';
 
 import { useState } from 'react';
-import type { Show } from '@/types/show';
+import type { WatchlistShow } from '@/types/show';
 import Card from './Card';
 
-const WatchlistContent = ({ watchlist }: { watchlist: Show[] }) => {
+const WatchlistContent = ({ watchlist }: { watchlist: WatchlistShow[] }) => {
   const [sortBy, setSortBy] = useState<'date' | 'rating' | null>(null);
 
   const sortedWatchlist = [...watchlist];
 
   if (sortBy === 'date') {
     sortedWatchlist.sort((a, b) => {
-      const dateA = a.addedAt ? new Date(a.addedAt).getTime() : 0;
-      const dateB = b.addedAt ? new Date(b.addedAt).getTime() : 0;
+      const dateA = new Date(a.addedAt).getTime();
+      const dateB = new Date(b.addedAt).getTime();
 
       return dateB - dateA;
     });

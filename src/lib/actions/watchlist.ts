@@ -1,6 +1,6 @@
 'use server';
 
-import type { Show } from '@/types/show';
+import type { Show, WatchlistShow } from '@/types/show';
 import { readFile, writeFile } from 'fs/promises';
 import { revalidatePath } from 'next/cache';
 
@@ -10,7 +10,7 @@ export const addShow = async (show: Show) => {
   try {
     const file = await readFile(filePath, 'utf8');
 
-    const shows: Show[] = JSON.parse(file);
+    const shows: WatchlistShow[] = JSON.parse(file);
 
     if (shows.some((item) => item.id === show.id)) {
       return {
@@ -19,7 +19,11 @@ export const addShow = async (show: Show) => {
       };
     }
 
-    const showWithDate = { ...show, addedAt: new Date().toISOString() };
+    const showWithDate: WatchlistShow = {
+      ...show,
+      addedAt: new Date().toISOString(),
+    };
+
     shows.push(showWithDate);
 
     const json = JSON.stringify(shows, null, 2);
@@ -35,11 +39,11 @@ export const addShow = async (show: Show) => {
   }
 };
 
-export const getWatchlist = async (): Promise<Show[]> => {
+export const getWatchlist = async (): Promise<WatchlistShow[]> => {
   try {
     const file = await readFile(filePath, 'utf8');
 
-    const shows = JSON.parse(file);
+    const shows: WatchlistShow[] = JSON.parse(file);
 
     return shows;
   } catch (error) {
@@ -52,7 +56,7 @@ export const removeShow = async (id: number) => {
   try {
     const file = await readFile(filePath, 'utf8');
 
-    const shows: Show[] = JSON.parse(file);
+    const shows: WatchlistShow[] = JSON.parse(file);
 
     const filteredShows = shows.filter((show) => show.id !== id);
 

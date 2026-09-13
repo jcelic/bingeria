@@ -1,10 +1,11 @@
 'use server';
 
-import { ReviewFormData } from '@/lib/validations/review';
-import { Show } from '@/types/show';
+import type { ReviewFormData } from '@/lib/validations/review';
+import type { WatchlistShow } from '@/types/show';
 import { readFile, writeFile } from 'fs/promises';
 import { revalidatePath } from 'next/cache';
 import { reviewSchema } from '../validations/review';
+
 const filePath = 'data/watchlist.json';
 
 export const saveReview = async (data: ReviewFormData, id: number) => {
@@ -20,7 +21,7 @@ export const saveReview = async (data: ReviewFormData, id: number) => {
   try {
     const file = await readFile(filePath, 'utf8');
 
-    const shows: Show[] = JSON.parse(file);
+    const shows: WatchlistShow[] = JSON.parse(file);
 
     const reviewedShow = shows.find((show) => show.id === id);
 
@@ -55,7 +56,7 @@ export const deleteReview = async (id: number) => {
   try {
     const file = await readFile(filePath, 'utf8');
 
-    const shows: Show[] = JSON.parse(file);
+    const shows: WatchlistShow[] = JSON.parse(file);
 
     const updatedShows = shows.map((show) =>
       show.id === id ? { ...show, review: undefined } : show,
