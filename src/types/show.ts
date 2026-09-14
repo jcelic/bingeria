@@ -24,3 +24,10 @@ export type SearchResult = {
   score: number;
   show: Show;
 };
+
+export type Episode = {
+  id: number;
+  name: string;
+  season: number;
+  number: number | null;
+};

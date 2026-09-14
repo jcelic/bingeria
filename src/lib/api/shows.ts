@@ -2,7 +2,7 @@
 // no-store nema smisla jer ne trebam svježe podatke na svaki request
 // force-cache bi mogao predugo zadržati zastarjele podatke.
 
-import type { SearchResult, Show } from '@/types/show';
+import type { Episode, SearchResult, Show } from '@/types/show';
 import { notFound } from 'next/navigation';
 
 export const getShows = async (): Promise<Show[]> => {
@@ -42,7 +42,7 @@ export const getShow = async (id: number): Promise<Show> => {
   return data;
 };
 
-export const getShowEpisodes = async (id: number): Promise<unknown[]> => {
+export const getShowEpisodes = async (id: number): Promise<Episode[]> => {
   const response = await fetch(`https://api.tvmaze.com/shows/${id}/episodes
 `);
 
@@ -50,7 +50,7 @@ export const getShowEpisodes = async (id: number): Promise<unknown[]> => {
 
   if (!response.ok) throw new Error('Failed to fetch episodes');
 
-  const data = await response.json();
+  const data: Episode[] = await response.json();
 
   return data;
 };
