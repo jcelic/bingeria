@@ -31,6 +31,7 @@ export const addShow = async (show: Show) => {
     await writeFile(filePath, json);
 
     revalidatePath('/watchlist');
+    revalidatePath(`/show/${show.id}`);
 
     return { success: true, message: 'Show added to watchlist' };
   } catch (error) {
