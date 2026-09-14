@@ -24,10 +24,11 @@ const Card = ({ id, image, name, genres, rating, isWatchlist }: CardProps) => {
       {image ? (
         <Image
           src={image}
-          width={210}
-          height={295}
+          width={420}
+          height={590}
+          sizes="280px"
           alt={`${name} poster`}
-          className="h-auto w-full"
+          className="aspect-210/295 w-full object-cover"
         />
       ) : (
         <div className="flex aspect-210/295 w-full items-center justify-center bg-zinc-100 dark:bg-zinc-700">

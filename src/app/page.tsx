@@ -46,7 +46,7 @@ export default async function Home({
             <Card
               key={show.id}
               id={show.id}
-              image={show.image?.medium}
+              image={show.image?.original}
               name={show.name}
               genres={show.genres}
               rating={show.rating.average}
