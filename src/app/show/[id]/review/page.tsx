@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import ReviewForm from '@/components/ReviewForm';
-import { getWatchlist } from '@/lib/actions/watchlist';
+import { getWatchlist } from '@/lib/data/watchlist';
 
 const ReviewPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;

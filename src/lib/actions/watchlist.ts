@@ -40,19 +40,6 @@ export const addShow = async (show: Show) => {
   }
 };
 
-export const getWatchlist = async (): Promise<WatchlistShow[]> => {
-  try {
-    const file = await readFile(filePath, 'utf8');
-
-    const shows: WatchlistShow[] = JSON.parse(file);
-
-    return shows;
-  } catch (error) {
-    console.error(error);
-    throw new Error('Failed to fetch watchlist');
-  }
-};
-
 export const removeShow = async (id: number) => {
   try {
     const file = await readFile(filePath, 'utf8');

@@ -1,4 +1,5 @@
-import { addShow, getWatchlist } from '@/lib/actions/watchlist';
+import { addShow } from '@/lib/actions/watchlist';
+import { getWatchlist } from '@/lib/data/watchlist';
 import { getShow } from '@/lib/api/shows';
 import { redirect } from 'next/navigation';
 import type { ReactNode } from 'react';

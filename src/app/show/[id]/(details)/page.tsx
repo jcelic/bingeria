@@ -3,7 +3,7 @@ import { Icon } from '@iconify/react';
 import { getShow, getShowEpisodes } from '@/lib/api/shows';
 import { removeHtml } from '@/lib/utils/removeHtml';
 import Link from 'next/link';
-import { getWatchlist } from '@/lib/actions/watchlist';
+import { getWatchlist } from '@/lib/data/watchlist';
 import AddShowBtn from '@/components/AddShowBtn';
 import ReviewCard from '@/components/ReviewCard';
 import BackBtn from '@/components/BackBtn';

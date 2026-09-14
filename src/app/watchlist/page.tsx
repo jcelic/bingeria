@@ -1,4 +1,4 @@
-import { getWatchlist } from '@/lib/actions/watchlist';
+import { getWatchlist } from '@/lib/data/watchlist';
 import WatchlistContent from '@/components/WatchlistContent';
 import { Icon } from '@iconify/react';
 
