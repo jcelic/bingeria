@@ -76,11 +76,7 @@ const Header = () => {
 
           <button
             type="button"
-            aria-label={
-              theme === 'dark'
-                ? 'Switch to light theme'
-                : 'Switch to dark theme'
-            }
+            aria-label="Toggle color theme"
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
             className="cursor-pointer rounded-md text-zinc-600 transition-colors hover:text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50 dark:focus-visible:outline-zinc-100"
           >
