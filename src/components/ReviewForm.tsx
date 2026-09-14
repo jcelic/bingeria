@@ -5,6 +5,7 @@ import { reviewSchema, type ReviewFormData } from '@/lib/validations/review';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import ConfirmDialog from './ConfirmDialog';
 
@@ -17,6 +18,8 @@ const ReviewForm = ({
 }) => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const router = useRouter();
 
   const {
     register,
@@ -149,29 +152,42 @@ const ReviewForm = ({
           </span>
         </label>
 
-        <div className="flex justify-end gap-3 border-t border-zinc-100 pt-6 dark:border-zinc-700">
-          {review && (
+        <div className="flex flex-col gap-3 border-t border-zinc-100 pt-6 dark:border-zinc-700 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            {review && (
+              <button
+                type="button"
+                className="w-full cursor-pointer rounded-lg bg-red-50 px-6 py-3 text-sm font-medium text-red-600 transition-colors hover:bg-red-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-950/60 dark:focus-visible:outline-red-400 sm:w-auto"
+                disabled={isSubmitting || isDeleting}
+                onClick={() => setIsDialogOpen(true)}
+              >
+                {isDeleting ? 'Deleting...' : 'Delete review'}
+              </button>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-3 sm:flex-row">
             <button
               type="button"
-              className="w-full cursor-pointer rounded-lg bg-red-50 px-6 py-3 text-sm font-medium text-red-600 transition-colors hover:bg-red-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-950/60 dark:focus-visible:outline-red-400 sm:w-auto"
+              className="w-full cursor-pointer rounded-lg bg-zinc-100 px-6 py-3 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-600 dark:focus-visible:outline-zinc-100 sm:w-auto"
               disabled={isSubmitting || isDeleting}
-              onClick={() => setIsDialogOpen(true)}
+              onClick={() => router.push(`/show/${id}`)}
             >
-              {isDeleting ? 'Deleting...' : 'Delete review'}
+              Cancel
             </button>
-          )}
 
-          <button
-            type="submit"
-            className="w-full cursor-pointer rounded-lg bg-zinc-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200 dark:focus-visible:outline-zinc-100 sm:w-auto"
-            disabled={isSubmitting || isDeleting}
-          >
-            {isSubmitting
-              ? 'Saving...'
-              : review
-                ? 'Update review'
-                : 'Save review'}
-          </button>
+            <button
+              type="submit"
+              className="w-full cursor-pointer rounded-lg bg-zinc-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200 dark:focus-visible:outline-zinc-100 sm:w-auto"
+              disabled={isSubmitting || isDeleting}
+            >
+              {isSubmitting
+                ? 'Saving...'
+                : review
+                  ? 'Update review'
+                  : 'Save review'}
+            </button>
+          </div>
         </div>
       </form>
 
