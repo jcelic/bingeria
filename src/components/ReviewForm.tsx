@@ -18,23 +18,26 @@ const ReviewForm = ({
 }) => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
   const router = useRouter();
 
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting, errors },
+    formState: { errors },
   } = useForm<ReviewFormData>({
     defaultValues: review,
     resolver: zodResolver(reviewSchema),
   });
 
   const onSubmit = async (data: ReviewFormData) => {
+    setIsSaving(true);
     const result = await saveReview(data, id);
 
     if (!result.success) {
       toast.error(result.message);
+      setIsSaving(false);
     }
   };
 
@@ -158,7 +161,7 @@ const ReviewForm = ({
               <button
                 type="button"
                 className="w-full cursor-pointer rounded-lg bg-red-50 px-6 py-3 text-sm font-medium text-red-600 transition-colors hover:bg-red-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-950/60 dark:focus-visible:outline-red-400 sm:w-auto"
-                disabled={isSubmitting || isDeleting}
+                disabled={isSaving || isDeleting}
                 onClick={() => setIsDialogOpen(true)}
               >
                 {isDeleting ? 'Deleting...' : 'Delete review'}
@@ -170,7 +173,7 @@ const ReviewForm = ({
             <button
               type="button"
               className="w-full cursor-pointer rounded-lg bg-zinc-100 px-6 py-3 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-600 dark:focus-visible:outline-zinc-100 sm:w-auto"
-              disabled={isSubmitting || isDeleting}
+              disabled={isSaving || isDeleting}
               onClick={() => router.push(`/show/${id}`)}
             >
               Cancel
@@ -179,9 +182,9 @@ const ReviewForm = ({
             <button
               type="submit"
               className="w-full cursor-pointer rounded-lg bg-zinc-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200 dark:focus-visible:outline-zinc-100 sm:w-auto"
-              disabled={isSubmitting || isDeleting}
+              disabled={isSaving || isDeleting}
             >
-              {isSubmitting
+              {isSaving
                 ? 'Saving...'
                 : review
                   ? 'Update review'
