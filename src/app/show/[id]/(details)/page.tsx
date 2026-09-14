@@ -1,10 +1,18 @@
 import { Icon } from '@iconify/react';
 import Link from 'next/link';
-import { getShow, getShowEpisodes } from '@/lib/api/shows';
+import { getShow, getShowEpisodes, getShows } from '@/lib/api/shows';
 import { getWatchlist } from '@/lib/data/watchlist';
 import AddShowBtn from '@/components/AddShowBtn';
 import BackBtn from '@/components/BackBtn';
 import ShowDetailsCard from '@/components/ShowDetailsCard';
+
+export const generateStaticParams = async () => {
+  const shows = await getShows();
+
+  return shows.slice(0, 10).map((show) => ({
+    id: show.id.toString(),
+  }));
+};
 
 const ShowDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
