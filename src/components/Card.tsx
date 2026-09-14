@@ -17,8 +17,8 @@ const Card = ({ id, image, name, genres, rating, isWatchlist }: CardProps) => {
     <article className="relative mx-auto h-full w-full max-w-70 overflow-hidden rounded-2xl bg-white text-center shadow-sm transition-shadow hover:shadow-md dark:bg-zinc-800 dark:shadow-[0_2px_8px_rgba(0,0,0,0.35)] dark:hover:shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
       <Link
         href={`/show/${id}`}
-        className="absolute inset-0 z-10"
-        aria-label={`Open ${name}`}
+        aria-label={`View details for ${name}`}
+        className="absolute inset-0 z-10 focus-visible:ring-3 focus-visible:ring-inset focus-visible:ring-zinc-900 focus-visible:outline-none dark:focus-visible:ring-zinc-100"
       />
 
       {image ? (
@@ -26,13 +26,14 @@ const Card = ({ id, image, name, genres, rating, isWatchlist }: CardProps) => {
           src={image}
           width={210}
           height={295}
-          alt={`${name} image`}
+          alt={`${name} poster`}
           className="h-auto w-full"
         />
       ) : (
         <div className="flex aspect-210/295 w-full items-center justify-center bg-zinc-100 dark:bg-zinc-700">
           <Icon
             icon="carbon:no-image"
+            aria-hidden="true"
             className="text-5xl text-zinc-700 dark:text-zinc-300"
           />
         </div>
@@ -55,15 +56,22 @@ const Card = ({ id, image, name, genres, rating, isWatchlist }: CardProps) => {
 
           <div className="flex shrink-0 flex-col items-center gap-1">
             {rating !== null && (
-              <span className="inline-flex items-center gap-1">
-                <Icon icon="ph:star-fill" className="text-lg text-yellow-400" />
+              <span
+                aria-label={`Rating ${rating} out of 10`}
+                className="inline-flex items-center gap-1"
+              >
+                <Icon
+                  icon="ph:star-fill"
+                  aria-hidden="true"
+                  className="text-lg text-yellow-400"
+                />
                 {rating}
               </span>
             )}
 
             {isWatchlist && (
               <div className="relative z-20">
-                <RemoveShowBtn id={id} />
+                <RemoveShowBtn id={id} name={name} />
               </div>
             )}
           </div>

@@ -74,9 +74,20 @@ const ShowLayout = async ({
                 </div>
 
                 <p className="mb-5 flex items-center gap-2">
-                  <span className="text-lg text-yellow-400">★</span>
-                  <span className="font-semibold">
-                    {show.rating.average ?? 'N/A'}
+                  <span aria-hidden="true" className="text-lg text-yellow-400">
+                    ★
+                  </span>
+
+                  <span>
+                    <span className="sr-only">Rating: </span>
+
+                    <span className="font-semibold">
+                      {show.rating.average ?? 'N/A'}
+                    </span>
+
+                    {show.rating.average !== null && (
+                      <span className="sr-only"> out of 10</span>
+                    )}
                   </span>
                 </p>
 
@@ -84,7 +95,7 @@ const ShowLayout = async ({
                   <button
                     type="submit"
                     disabled={isAdded}
-                    className="inline-flex cursor-pointer items-center gap-2 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
+                    className="inline-flex cursor-pointer items-center gap-2 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-zinc-900"
                   >
                     {isAdded ? 'In watchlist' : '+ Add to watchlist'}
                   </button>

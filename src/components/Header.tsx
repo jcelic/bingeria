@@ -15,23 +15,26 @@ const Header = () => {
         <div>
           <Link
             href="/"
-            className="flex items-center gap-2 transition-opacity hover:opacity-80"
+            className="flex items-center gap-2 transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 dark:focus-visible:outline-zinc-100"
           >
             <span className="text-3xl sm:text-4xl md:text-5xl">Bingeria</span>
+
             <Icon
               icon="twemoji:popcorn"
+              aria-hidden="true"
               className="text-3xl sm:text-4xl md:text-5xl"
             />
           </Link>
         </div>
 
         <div className="flex items-center gap-3">
-          <nav>
+          <nav aria-label="Main navigation">
             <ul className="flex items-center gap-3 text-lg sm:gap-4 sm:text-xl">
               <li>
                 <Link
                   href="/watchlist"
-                  className={`transition-colors hover:text-black dark:hover:text-zinc-50 ${
+                  aria-current={pathname === '/watchlist' ? 'page' : undefined}
+                  className={`transition-colors hover:text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 dark:hover:text-zinc-50 dark:focus-visible:outline-zinc-100 ${
                     pathname === '/watchlist'
                       ? 'text-black dark:text-zinc-50'
                       : 'text-zinc-600 dark:text-zinc-300'
@@ -44,7 +47,8 @@ const Header = () => {
               <li>
                 <Link
                   href="/about"
-                  className={`transition-colors hover:text-black dark:hover:text-zinc-50 ${
+                  aria-current={pathname === '/about' ? 'page' : undefined}
+                  className={`transition-colors hover:text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 dark:hover:text-zinc-50 dark:focus-visible:outline-zinc-100 ${
                     pathname === '/about'
                       ? 'text-black dark:text-zinc-50'
                       : 'text-zinc-600 dark:text-zinc-300'
@@ -57,7 +61,8 @@ const Header = () => {
               <li>
                 <Link
                   href="/rules"
-                  className={`transition-colors hover:text-black dark:hover:text-zinc-50 ${
+                  aria-current={pathname === '/rules' ? 'page' : undefined}
+                  className={`transition-colors hover:text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 dark:hover:text-zinc-50 dark:focus-visible:outline-zinc-100 ${
                     pathname === '/rules'
                       ? 'text-black dark:text-zinc-50'
                       : 'text-zinc-600 dark:text-zinc-300'
@@ -71,11 +76,18 @@ const Header = () => {
 
           <button
             type="button"
+            aria-label={
+              theme === 'dark'
+                ? 'Switch to light theme'
+                : 'Switch to dark theme'
+            }
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            className="cursor-pointer rounded-md text-zinc-600 transition-colors hover:text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50 dark:focus-visible:outline-zinc-100"
           >
             <Icon
               icon={theme === 'dark' ? 'ph:sun' : 'ph:moon'}
-              className="cursor-pointer text-2xl text-zinc-600 transition-colors hover:text-black dark:text-zinc-300 dark:hover:text-zinc-50 sm:text-3xl"
+              aria-hidden="true"
+              className="text-2xl sm:text-3xl"
             />
           </button>
         </div>

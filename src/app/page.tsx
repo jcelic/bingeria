@@ -28,8 +28,15 @@ export default async function Home({
       <SearchInput />
 
       {q && showsToDisplay.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-16 text-center text-zinc-500 dark:text-zinc-400">
-          <Icon icon="ph:magnifying-glass" className="mb-3 text-4xl" />
+        <div
+          role="status"
+          className="flex flex-col items-center justify-center py-16 text-center text-zinc-500 dark:text-zinc-400"
+        >
+          <Icon
+            icon="ph:magnifying-glass"
+            aria-hidden="true"
+            className="mb-3 text-4xl"
+          />
 
           <p>No shows found for &quot;{q}&quot;.</p>
         </div>

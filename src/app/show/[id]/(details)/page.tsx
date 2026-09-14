@@ -32,6 +32,7 @@ const ShowDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
   return (
     <main className="mx-auto w-full max-w-5xl px-4 pt-30 pb-10">
       <BackBtn />
+
       <article className="overflow-hidden rounded-2xl bg-white shadow-sm dark:bg-zinc-800 dark:shadow-[0_2px_8px_rgba(0,0,0,0.35)]">
         <div className="grid gap-8 p-6 md:grid-cols-[280px_1fr] md:p-8">
           {show.image ? (
@@ -46,6 +47,7 @@ const ShowDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
             <div className="mx-auto flex aspect-5/7 w-full max-w-90 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-700 md:max-w-none">
               <Icon
                 icon="carbon:no-image"
+                aria-hidden="true"
                 className="text-6xl text-zinc-700 dark:text-zinc-300"
               />
             </div>
@@ -71,9 +73,13 @@ const ShowDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
               {isAdded && (
                 <Link
                   href={`/show/${id}/review`}
-                  className="mb-6 inline-flex cursor-pointer items-center gap-2 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-700 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200"
+                  className="mb-6 inline-flex cursor-pointer items-center gap-2 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200 dark:focus-visible:outline-zinc-100"
                 >
-                  <Icon icon="ph:pencil-simple" className="text-lg" />
+                  <Icon
+                    icon="ph:pencil-simple"
+                    aria-hidden="true"
+                    className="text-lg"
+                  />
                   {review ? 'Edit' : 'Write'} a review
                 </Link>
               )}
@@ -81,9 +87,20 @@ const ShowDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
 
             <div className="mb-6 space-y-3 text-sm">
               <p className="flex items-center gap-2">
-                <Icon icon="ph:star-fill" className="text-lg text-yellow-400" />
-                <span className="font-semibold">
-                  {show.rating.average ?? 'N/A'}
+                <Icon
+                  icon="ph:star-fill"
+                  aria-hidden="true"
+                  className="text-lg text-yellow-400"
+                />
+
+                <span>
+                  <span className="sr-only">Rating: </span>
+                  <span className="font-semibold">
+                    {show.rating.average ?? 'N/A'}
+                  </span>
+                  {show.rating.average !== null && (
+                    <span className="sr-only"> out of 10</span>
+                  )}
                 </span>
               </p>
 

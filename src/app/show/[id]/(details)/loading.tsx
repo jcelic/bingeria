@@ -1,9 +1,21 @@
 const Loading = () => {
   return (
-    <main className="mx-auto w-full max-w-5xl px-4 pt-30 pb-10">
-      <div className="mb-4 h-10 w-24 animate-pulse rounded-lg bg-zinc-200 dark:bg-zinc-700" />
+    <main
+      aria-busy="true"
+      aria-live="polite"
+      className="mx-auto w-full max-w-5xl px-4 pt-30 pb-10"
+    >
+      <p className="sr-only">Loading show details...</p>
 
-      <article className="overflow-hidden rounded-2xl bg-white shadow-sm dark:bg-zinc-800 dark:shadow-[0_2px_8px_rgba(0,0,0,0.35)]">
+      <div
+        aria-hidden="true"
+        className="mb-4 h-10 w-24 animate-pulse rounded-lg bg-zinc-200 dark:bg-zinc-700"
+      />
+
+      <article
+        aria-hidden="true"
+        className="overflow-hidden rounded-2xl bg-white shadow-sm dark:bg-zinc-800 dark:shadow-[0_2px_8px_rgba(0,0,0,0.35)]"
+      >
         <div className="grid gap-8 p-6 md:grid-cols-[280px_1fr] md:p-8">
           <div className="mx-auto aspect-5/7 w-full max-w-90 animate-pulse rounded-xl bg-zinc-200 dark:bg-zinc-700 md:max-w-none" />
 

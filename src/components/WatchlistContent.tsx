@@ -35,7 +35,8 @@ const WatchlistContent = ({ watchlist }: { watchlist: WatchlistShow[] }) => {
         <div className="flex gap-2">
           <button
             type="button"
-            className={`cursor-pointer rounded-xl px-4 py-2 text-sm font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] transition-colors dark:shadow-[0_2px_8px_rgba(0,0,0,0.3)] ${
+            aria-pressed={sortBy === 'date'}
+            className={`cursor-pointer rounded-xl px-4 py-2 text-sm font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 dark:shadow-[0_2px_8px_rgba(0,0,0,0.3)] dark:focus-visible:outline-zinc-100 ${
               sortBy === 'date'
                 ? 'bg-zinc-950 text-white hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200'
                 : 'bg-white text-zinc-700 hover:bg-zinc-100 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700'
@@ -47,7 +48,8 @@ const WatchlistContent = ({ watchlist }: { watchlist: WatchlistShow[] }) => {
 
           <button
             type="button"
-            className={`cursor-pointer rounded-xl px-4 py-2 text-sm font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] transition-colors dark:shadow-[0_2px_8px_rgba(0,0,0,0.3)] ${
+            aria-pressed={sortBy === 'rating'}
+            className={`cursor-pointer rounded-xl px-4 py-2 text-sm font-medium shadow-[0_2px_8px_rgba(0,0,0,0.05)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 dark:shadow-[0_2px_8px_rgba(0,0,0,0.3)] dark:focus-visible:outline-zinc-100 ${
               sortBy === 'rating'
                 ? 'bg-zinc-950 text-white hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200'
                 : 'bg-white text-zinc-700 hover:bg-zinc-100 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700'

@@ -58,12 +58,17 @@ const ReviewForm = ({
             min={1}
             max={10}
             step={1}
+            aria-invalid={!!errors.rating}
+            aria-describedby={errors.rating ? 'rating-error' : undefined}
             {...register('rating', { valueAsNumber: true })}
             placeholder="1–10"
             className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition-colors placeholder:text-zinc-400 focus:border-zinc-400 focus:bg-white focus:ring-2 focus:ring-zinc-100 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:placeholder:text-zinc-500 dark:focus:border-zinc-500 dark:focus:bg-zinc-900 dark:focus:ring-zinc-700"
           />
 
-          <p className="mt-2 min-h-4 text-xs text-red-500">
+          <p
+            id="rating-error"
+            className="mt-2 min-h-4 text-xs text-red-600 dark:text-red-400"
+          >
             {errors.rating?.message}
           </p>
         </div>
@@ -78,12 +83,17 @@ const ReviewForm = ({
             type="number"
             min={0}
             step={1}
+            aria-invalid={!!errors.episode}
+            aria-describedby={errors.episode ? 'episode-error' : undefined}
             {...register('episode', { valueAsNumber: true })}
             placeholder="e.g. 12"
             className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition-colors placeholder:text-zinc-400 focus:border-zinc-400 focus:bg-white focus:ring-2 focus:ring-zinc-100 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:placeholder:text-zinc-500 dark:focus:border-zinc-500 dark:focus:bg-zinc-900 dark:focus:ring-zinc-700"
           />
 
-          <p className="mt-2 min-h-4 text-xs text-red-500">
+          <p
+            id="episode-error"
+            className="mt-2 min-h-4 text-xs text-red-600 dark:text-red-400"
+          >
             {errors.episode?.message}
           </p>
         </div>
@@ -96,13 +106,18 @@ const ReviewForm = ({
 
         <textarea
           id="comment"
+          aria-invalid={!!errors.comment}
+          aria-describedby={errors.comment ? 'comment-error' : undefined}
           {...register('comment')}
           rows={6}
           placeholder="What stood out to you? Share your thoughts..."
           className="w-full resize-y rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 leading-relaxed outline-none transition-colors placeholder:text-zinc-400 focus:border-zinc-400 focus:bg-white focus:ring-2 focus:ring-zinc-100 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:placeholder:text-zinc-500 dark:focus:border-zinc-500 dark:focus:bg-zinc-900 dark:focus:ring-zinc-700"
         />
 
-        <p className="mt-2 min-h-4 text-xs text-red-500">
+        <p
+          id="comment-error"
+          className="mt-2 min-h-4 text-xs text-red-600 dark:text-red-400"
+        >
           {errors.comment?.message}
         </p>
       </div>

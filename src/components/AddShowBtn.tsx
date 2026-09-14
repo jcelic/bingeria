@@ -28,10 +28,10 @@ const AddShowBtn = ({ show, isAdded }: { show: Show; isAdded: boolean }) => {
     <form action={formAction}>
       <button
         type="submit"
-        className="mb-6 inline-flex cursor-pointer items-center gap-2 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-700 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-zinc-900 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200 dark:disabled:hover:bg-zinc-50"
+        className="mb-6 inline-flex cursor-pointer items-center gap-2 rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-zinc-900 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200 dark:focus-visible:outline-zinc-100 dark:disabled:hover:bg-zinc-50"
         disabled={added || pending}
       >
-        <Icon icon="ph:plus" className="text-lg" />
+        <Icon icon="ph:plus" aria-hidden="true" className="text-lg" />
 
         {pending ? 'Adding...' : added ? 'In watchlist' : 'Add to watchlist'}
       </button>
