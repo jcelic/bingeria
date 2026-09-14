@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bingeria 🍿
 
-## Getting Started
+Bingeria je Next.js aplikacija za pregled i pretraživanje serija, spremanje serija na watchlist te pisanje recenzija.
 
-First, run the development server:
+Podaci o serijama dohvaćaju se s javnog [TVmaze API-ja](https://www.tvmaze.com/api).
+
+## Funkcionalnosti
+
+- katalog i pretraga serija s debounceom
+- detalji serije
+- watchlist s trajnom pohranom u JSON datoteci
+- dodavanje i uklanjanje serija pomoću Server Actions
+- dodavanje, uređivanje i brisanje recenzija
+- React Hook Form + Zod validacija na klijentu i serveru
+- statistika i sortiranje watchlista
+- dark/light tema i responzivan dizajn
+- route-specific loading i prilagođeni error/404 prikazi
+- dodavanje na watchlist radi i bez JavaScripta
+- prvih 10 stranica detalja serije statički se generira pomoću `generateStaticParams`
+
+## Tehnologije
+
+Next.js, TypeScript, Tailwind CSS, React Hook Form, Zod, Sonner, Iconify i TVmaze API.
+
+## Korištenje AI alata
+
+AI alati korišteni su kao pomoć tijekom razvoja projekta, prvenstveno za:
+
+- pomoć pri pojedinim UI i styling odlukama koje bih mogao implementirati i samostalno, ali uz više vremena
+- pomoć pri pisanju i uređivanju README dokumentacije
+- završni code review, pronalaženje i ispravljanje neprimijećenih problema i edge caseova te provjeru zadovoljavanja zahtjeva zadatka
+- analizu i rješavanje problema vezanog uz istovremeni rad `loading.tsx` skeletona i `Add to watchlist` funkcionalnosti bez JavaScripta
+
+Posebno kod tog problema AI je korišten za analizu mogućih rješenja i Next.js ponašanja, nakon čega je odabrano rješenje koje zadržava loading skeleton, Server Action bez JavaScripta i zajednički details UI.
+
+## Pokretanje projekta
 
 ```bash
+git clone https://github.com/jcelic/bingeria
+cd bingeria
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Aplikacija je zatim dostupna na:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Production build:
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Struktura projekta
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```text
+bingeria/
+├── data/
+│   └── watchlist.json
+└── src/
+    ├── app/
+    ├── components/
+    ├── hooks/
+    ├── lib/
+    │   ├── actions/
+    │   ├── api/
+    │   ├── data/
+    │   ├── utils/
+    │   └── validations/
+    └── types/
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Zašto je tražilica Client Component, a lista rezultata nije?
 
-## Deploy on Vercel
+Tražilica mora biti Client Component jer koristi React hookove za kontrolirani input, debounce i promjenu URL-a te mora reagirati na korisnikov unos.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Lista rezultata ne treba biti Client Component jer sama ne koristi React state, event handlere ni druge client-side hookove. Server čita q parametar iz URL-a, dohvaća rezultate s TVmaze API-ja i renderira ih na serveru. Na taj način se API ne dohvaća iz preglednika.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Čemu služi grupiranje ruta bez utjecaja na URL?
+
+Route groups služe za organizaciju povezanih ruta i dijeljenje zajedničkog layouta bez dodavanja naziva grupe u URL.
+
+Zato:
+
+```text
+src/app/(info)/about
+src/app/(info)/rules
+```
+
+daje URL-ove:
+
+```text
+/about
+/rules
+```
+
+umjesto `/info/about` i `/info/rules`.
+
+## Screenshotovi
+
+### Katalog
+
+![Katalog](./screenshots/catalog.png)
+
+### Details serije
+
+![Details serije](./screenshots/details.png)
+
+### Watchlist
+
+![Watchlist](./screenshots/watchlist.png)
