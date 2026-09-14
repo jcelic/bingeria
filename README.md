@@ -31,6 +31,7 @@ AI alati korišteni su kao pomoć tijekom razvoja projekta, prvenstveno za:
 - pomoć pri pojedinim UI i styling odlukama koje bih mogao implementirati i samostalno, ali uz više vremena
 - pomoć pri pisanju i uređivanju README dokumentacije
 - završni code review, pronalaženje i ispravljanje neprimijećenih problema i edge caseova te provjeru zadovoljavanja zahtjeva zadatka
+- pomoć pri poboljšanju pristupačnosti sučelja, uključujući `aria-*` atribute, focus stanja i druge accessibility detalje
 - analizu i rješavanje problema vezanog uz istovremeni rad `loading.tsx` skeletona i `Add to watchlist` funkcionalnosti bez JavaScripta
 
 Posebno kod tog problema AI je korišten za analizu mogućih rješenja i Next.js ponašanja, nakon čega je odabrano rješenje koje zadržava loading skeleton, Server Action bez JavaScripta i zajednički details UI.
