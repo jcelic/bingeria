@@ -48,6 +48,7 @@ export const saveReview = async (data: ReviewFormData, id: number) => {
     await writeFile(filePath, json);
 
     revalidatePath('/watchlist');
+    revalidatePath(`/show/${id}`);
   } catch (error) {
     console.error(error);
 
@@ -75,6 +76,7 @@ export const deleteReview = async (id: number) => {
     await writeFile(filePath, json);
 
     revalidatePath('/watchlist');
+    revalidatePath(`/show/${id}`);
   } catch (error) {
     console.error(error);
 
