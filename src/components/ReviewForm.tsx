@@ -174,7 +174,7 @@ const ReviewForm = ({
               type="button"
               className="w-full cursor-pointer rounded-lg bg-zinc-100 px-6 py-3 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-600 dark:focus-visible:outline-zinc-100 sm:w-auto"
               disabled={isSaving || isDeleting}
-              onClick={() => router.push(`/show/${id}`)}
+              onClick={() => router.back()}
             >
               Cancel
             </button>
